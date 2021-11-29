@@ -14,3 +14,13 @@
 ## Prerequisites 
 * HoloLens 2 fundamentals: develop mixed reality applications
   * [Introduction to Mixed Reality Toolkit](https://docs.microsoft.com/ko-kr/learn/modules/learn-mrtk-tutorials/1-1-introduction)
+
+## Access to Real-Time Eye Gaze (MRTK-Unity API)
+```C#
+Vector3 gazeDir = CoreServices.InputSystem.EyeGazeProvider.GazeDirection;
+Vector3 gazeOrigin = CoreServices.InputSystem.EyeGazeProvider.GazeOrigin;
+
+Ray gazeRay = new Ray(gazeOrigin, gazeDir);    // Eye Gaze ray 
+GameObject.Find("EyeCursor").transform.position = gazeRay.GetPoint(15.0f);   // Locate eye cursor
+```
+
