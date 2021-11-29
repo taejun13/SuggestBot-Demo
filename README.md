@@ -11,3 +11,6 @@
 * [MRTK-Unity](https://docs.microsoft.com/ko-kr/windows/mixed-reality/mrtk-unity) (Mixed Reality Toolkit) API for Hololens Programming
 * Unity Version:  2019.4.8f1 
   * Required Module: Universal Windows Platform Build Support
+## Prerequisites 
+* HoloLens 2 fundamentals: develop mixed reality applications
+  * [Introduction to Mixed Reality Toolkit](https://docs.microsoft.com/ko-kr/learn/modules/learn-mrtk-tutorials/1-1-introduction)
