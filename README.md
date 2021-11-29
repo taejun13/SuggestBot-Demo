@@ -1,5 +1,8 @@
 ## SuggestBot: Development of a Context-Based Smart Interaction Service Platform 
-#### (R&D Project funded by Korea Ministry of Science and ICT - Project Demonstration, 2020)
+<h4 align="center">
+ (R&D Project funded by Korea Ministry of Science and ICT - Project Demonstration, 2020)
+</h4>
+
 
 <p align="center">
     <img src="img/overviewImage.PNG", width="700">
