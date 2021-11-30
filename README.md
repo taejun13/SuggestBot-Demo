@@ -59,11 +59,7 @@ void TakePicture(PhraseRecognizedEventArgs prea)
 void OnPhotoCaptureCreated(PhotoCapture captureObject)
 {
   photoCaptureObject = captureObject;
-  CameraParameters c = new CameraParameters();
-  c.hologramOpacity = 0.0f;
-  c.cameraResolutionWidth = 640;
-  c.cameraResolutionHeight = 360;
-  c.pixelFormat = CapturePixelFormat.BGRA32;
+  ...
   captureObject.StartPhotoModeAsync(c, OnPhotoModeStarted);
 }
 
