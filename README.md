@@ -9,7 +9,7 @@
 ## Development Environment
 * AR Headset: [Hololens 2](https://www.microsoft.com/ko-kr/hololens/hardware)
 * [MRTK-Unity](https://docs.microsoft.com/ko-kr/windows/mixed-reality/mrtk-unity) (Mixed Reality Toolkit) API for Hololens Programming
-* Unity Version:  2019.3.23f1
+* Unity Version:  2020.3.23f1
 ## Prerequisites 
 * HoloLens 2 fundamentals: develop mixed reality applications
   * [Introduction to Mixed Reality Toolkit](https://docs.microsoft.com/ko-kr/learn/modules/learn-mrtk-tutorials/1-1-introduction)
