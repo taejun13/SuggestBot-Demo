@@ -17,6 +17,8 @@
 
 ## Access to Real-Time Eye Gaze (MRTK-Unity API)
 ```C#
+using Microsoft.MixedReality.Toolkit;
+
 Vector3 gazeDir = CoreServices.InputSystem.EyeGazeProvider.GazeDirection;
 Vector3 gazeOrigin = CoreServices.InputSystem.EyeGazeProvider.GazeOrigin;
 
@@ -24,3 +26,67 @@ Ray gazeRay = new Ray(gazeOrigin, gazeDir);    // Eye Gaze ray
 GameObject.Find("EyeCursor").transform.position = gazeRay.GetPoint(15.0f);   // Locate eye cursor
 ```
 
+## Voice Input 
+[Microsoft Docs - Voice input in Unity](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/unity/voice-input-in-unity)
+
+```C#
+using UnityEngine.Windows.Speech;
+using System.Collections.Generic;
+using System.Linq;
+
+KeywordRecognizer keywordRecognizer;
+delegate void KeywordAction(PhraseRecognizedEventArgs args);
+Dictionary<string, KeywordAction> keywordCollection;
+
+void Start()
+{
+  keywordCollection = new Dictionary<string, KeywordAction>();
+  keywordCollection.Add("Take Picture", TakePicture);
+  keywordRecognizer = new KeywordRecognizer(keywordCollection.Keys.ToArray());
+  keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
+  keywordRecognizer.Start();
+}
+```
+
+## Access to Built-In Front Camera of Hololens
+[Microsoft Docs - Photo Video camera in Unity](https://docs.microsoft.com/en-us/windows/mixed-reality/develop/unity/locatable-camera-in-unity)
+```C#
+void TakePicture(PhraseRecognizedEventArgs prea)
+{
+  PhotoCapture.CreateAsync(false, OnPhotoCaptureCreated);
+}
+
+void OnPhotoCaptureCreated(PhotoCapture captureObject)
+{
+  photoCaptureObject = captureObject;
+  CameraParameters c = new CameraParameters();
+  c.hologramOpacity = 0.0f;
+  c.cameraResolutionWidth = 640;
+  c.cameraResolutionHeight = 360;
+  c.pixelFormat = CapturePixelFormat.BGRA32;
+  captureObject.StartPhotoModeAsync(c, OnPhotoModeStarted);
+}
+
+void OnPhotoModeStarted(PhotoCapture.PhotoCaptureResult result)
+{
+  if (result.success)
+    photoCaptureObject.TakePhotoAsync(OnCapturedPhotoToMemory);
+  else
+    Debug.LogError("Unable to start photo mode ...");
+}
+
+void OnCapturedPhotoToMemory(PhotoCapture.PhotoCaptureResult result, PhotoCaptureFrame photoCaptureFrame)
+{
+  if (result.success)
+  {
+    ...
+  }
+  photoCaptureObject.StopPhotoModeAsync(OnStoppedPhotoMode);
+}
+
+void OnStoppedPhotoMode(PhotoCapture.PhotoCaptureResult result)
+{
+  photoCaptureObject.Dispose();
+  photoCaptureObject = null;
+}
+```
